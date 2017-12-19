@@ -71,7 +71,7 @@ public class ReposActivity extends AppCompatActivity {
             listItems.add(listItem);
         }
         simpleAdapter = new SimpleAdapter(this, listItems, R.layout.repos,
-                new String[]{"name", "description", "language"}, new int[]{R.id.name, R.id.language, R.id.description});
+                new String[]{"name", "language", "description"}, new int[]{R.id.name, R.id.language, R.id.description});
         listView.setAdapter(simpleAdapter);
     }
     public void removeWait() {

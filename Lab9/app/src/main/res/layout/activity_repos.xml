@@ -6,7 +6,7 @@
     <ListView
         android:id="@+id/reposList"
         android:layout_width="368dp"
-        android:layout_height="551dp">
+        android:layout_height="match_parent">
     </ListView>
     <ProgressBar
         android:id="@+id/progress_bar"
