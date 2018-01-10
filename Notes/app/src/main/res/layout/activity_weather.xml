@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.example.ts13.finalproject.WeatherActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/weaguideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="30dp"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/weaguideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="30dp"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/weaguideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="30dp"/>
+
+    <ImageView
+        android:id="@+id/bgSky"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:src="@drawable/sky"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/weatherTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25℃"
+        android:textSize="100dp"
+        android:textColor="@color/colorWhite"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        app:layout_constraintTop_toBottomOf="@id/weaguideline1"
+        app:layout_constraintLeft_toLeftOf="@id/weaguideline2"/>
+
+    <TextView
+        android:id="@+id/weatherCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="广州Today"
+        android:textSize="35dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@+id/weatherTemp"
+        app:layout_constraintLeft_toLeftOf="@id/weaguideline2" />
+
+    <TextView
+        android:id="@+id/weatherTodayTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今日温度：8℃~20℃"
+        android:textSize="20dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@+id/weatherCity"
+        app:layout_constraintLeft_toLeftOf="@id/weaguideline2"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/weatherTodayWea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今日天气：晴转霾"
+        android:textSize="20dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@+id/weatherTodayTemp"
+        app:layout_constraintLeft_toLeftOf="@id/weaguideline2"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/adviceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="穿衣建议"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@id/weatherTodayWea"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/weatherDress"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="建议着大衣、呢外套加毛衣、卫衣等服装。"
+        android:textSize="20dp"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@+id/adviceText"
+        app:layout_constraintLeft_toLeftOf="@id/weaguideline2"
+        app:layout_constraintRight_toRightOf="@id/weaguideline3"
+        android:layout_marginTop="5dp"/>
+
+</android.support.constraint.ConstraintLayout>
