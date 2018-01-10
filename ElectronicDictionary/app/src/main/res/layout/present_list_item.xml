@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 联系人列表的子项布局 -->
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:background="@drawable/ripple">
+    <!--android:clickable="true"-->
+    <!--android:focusable="true"-->
+    <!-- 左侧圆圈 -->
+    <TextView
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/primary_white"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:background="@drawable/first_letter_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <!-- 右侧人物姓名 -->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_black"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        app:layout_constraintLeft_toRightOf="@+id/first"
+        android:layout_marginStart="14dp"
+        app:layout_constraintTop_toTopOf="@+id/first"
+        android:layout_marginTop="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/first"
+        android:layout_marginBottom="8dp" />
+    <!--<TextView-->
+        <!--android:id="@+id/price"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="@color/primary_black"-->
+        <!--android:textSize="20sp"-->
+        <!--android:layout_gravity="center"-->
+        <!--app:layout_constraintTop_toTopOf="@+id/first"-->
+        <!--android:layout_marginTop="13dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/first"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--app:layout_constraintVertical_bias="0.0"-->
+        <!--android:layout_marginEnd="52dp"-->
+        <!--app:layout_constraintRight_toRightOf="parent" />-->
+
+</android.support.constraint.ConstraintLayout>

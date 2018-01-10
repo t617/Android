@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab7</string>
+    <string name="nPwdHint">New Password</string>
+    <string name="cPwdHint">Confirm Password</string>
+</resources>

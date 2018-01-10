@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 人物详情界面布局 -->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/timg">
+//头像
+
+        <ImageView
+            android:id="@+id/top_back"
+            android:layout_width="207dp"
+            android:layout_height="163dp"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/name"
+            android:layout_alignParentStart="true"
+            app:layout_constraintLeft_toRightOf="@+id/name"
+            android:layout_marginLeft="96dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="1.0" />
+//姓名
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="135dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:text="姓名"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="14dp"
+        tools:layout_editor_absoluteX="16dp" />
+//生卒
+
+    <TextView
+        android:id="@+id/life"
+        android:layout_width="125dp"
+        android:layout_height="41dp"
+        android:text="生卒"
+        android:textColor="@color/primary_black"
+        android:textSize="20sp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/sex" />
+    ///性别
+    <TextView
+        android:layout_width="64dp"
+        android:layout_height="28dp"
+        android:id="@+id/sex"
+        android:textColor="@color/primary_black"
+        android:textSize="20sp"
+        android:text="男"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+//势力
+    <TextView
+        android:id="@+id/unit"
+            android:layout_width="113dp"
+            android:layout_height="39dp"
+        android:text="势力"
+            android:textColor="@color/primary_black"
+            android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/life"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+//籍贯
+    <TextView
+        android:id="@+id/place"
+        android:layout_width="350dp"
+        android:layout_height="64dp"
+        android:text="籍贯"
+        android:textColor="@color/primary_black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/unit"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+//详细信息
+    <TextView
+        android:text="介绍"
+        android:textSize="15sp"
+        android:textColor="@color/primary_black"
+        android:id="@+id/info"
+        android:layout_width="314dp"
+        android:layout_height="219dp"
+        android:background="@null"
+        android:layout_weight="0.00"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/place"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="275dp"
+        tools:layout_editor_absoluteX="29dp" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
