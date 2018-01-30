@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="red_wine">
+        <item>热门视频</item>
+        <item>热门直播</item>
+    </string-array>
+</resources>
