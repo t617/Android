@@ -9,12 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/buttonHeight"
         android:orientation="vertical">
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            app:tabIndicatorColor="@android:color/holo_blue_light"
+            app:tabIndicatorColor="@color/colorGreen"
             app:tabTextColor="@android:color/darker_gray"
             app:tabSelectedTextColor="@android:color/black"
             android:layout_height="wrap_content" />
@@ -27,3 +26,4 @@
     </LinearLayout>
 
 </FrameLayout>
+    <!--app:tabIndicatorColor="@android:color/holo_blue_light"-->

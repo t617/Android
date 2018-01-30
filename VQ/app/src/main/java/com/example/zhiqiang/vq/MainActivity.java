@@ -47,6 +47,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import cn.jzvd.JZVideoPlayer;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         ViewPager.OnPageChangeListener, RadioGroup.OnCheckedChangeListener {
     private LinearLayout account;
@@ -180,9 +182,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     @Override
     public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            return;
         } else {
             super.onBackPressed();
         }

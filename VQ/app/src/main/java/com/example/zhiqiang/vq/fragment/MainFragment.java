@@ -29,9 +29,9 @@ public class MainFragment extends Fragment {
         SimpleAdapter simpleAdapter;
         for (int i = 0; i < 10; i++) {
             Map<String, Object> listItem = new LinkedHashMap<>();
-            listItem.put("name", "t617");
-            listItem.put("language", "java");
-            listItem.put("description", "t617的库");
+            listItem.put("name", "呵呵");
+            listItem.put("language", "呵呵呵");
+            listItem.put("description", "呵呵呵嗝");
             listItems.add(listItem);
         }
         simpleAdapter = new SimpleAdapter(getActivity(), listItems, R.layout.repos,

@@ -54,26 +54,26 @@
         <RadioGroup
             android:id="@+id/rg_tab_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/buttonHeight"
+            android:layout_height="wrap_content"
             android:background="@color/transparent"
             android:orientation="horizontal">
             <RadioButton
                 android:id="@+id/first"
                 style="@style/tab_menu_item"
                 android:drawableTop="@drawable/tab_menu_video"
-                android:text="@string/test" />
+                android:text="@string/first_fragment" />
 
             <RadioButton
                 android:id="@+id/second"
                 style="@style/tab_menu_item"
-                android:drawableTop="@drawable/tab_menu_video"
-                android:text="@string/test" />
+                android:drawableTop="@drawable/tab_menu_home"
+                android:text="@string/second_fragment" />
 
             <RadioButton
                 android:id="@+id/thrid"
                 style="@style/tab_menu_item"
                 android:drawableTop="@drawable/tab_menu_video"
-                android:text="@string/test" />
+                android:text="@string/thrid_fragment" />
 
         </RadioGroup>
         <!--<Button-->
