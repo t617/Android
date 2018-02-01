@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.zhiqiang.vq.Adapter.MyInnerFPAdapter;
+import com.example.zhiqiang.vq.adapter.MyInnerFPAdapter;
 import com.example.zhiqiang.vq.R;
 import com.example.zhiqiang.vq.fragment.InnerVideoPager.HotLiving;
 import com.example.zhiqiang.vq.fragment.InnerVideoPager.HotTV;

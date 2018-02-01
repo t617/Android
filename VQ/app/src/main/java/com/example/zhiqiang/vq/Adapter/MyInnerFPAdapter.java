@@ -1,4 +1,4 @@
-package com.example.zhiqiang.vq.Adapter;
+package com.example.zhiqiang.vq.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

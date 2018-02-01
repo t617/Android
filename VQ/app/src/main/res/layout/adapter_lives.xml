@@ -7,8 +7,8 @@
 
     <RelativeLayout
         android:id="@+id/portrait"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/ivPortrait"
@@ -19,7 +19,7 @@
             android:id="@+id/tvNameAndCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/darker_gray"
             android:layout_alignBottom="@+id/ivPortrait"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp"

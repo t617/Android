@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.example.zhiqiang.vq.Adapter.AdapterVideoList;
+import com.example.zhiqiang.vq.adapter.AdapterVideoList;
 import com.example.zhiqiang.vq.R;
-import com.example.zhiqiang.vq.VideoConstant;
+import com.example.zhiqiang.vq.constant.VideoConstant;
 
 import cn.jzvd.JZVideoPlayer;
 
@@ -22,6 +22,7 @@ public class HotVideo extends Fragment {
         view = inflater.inflate(R.layout.activity_hot_video, container, false);
         bindView();
         loadView();
+//        JZVideoPlayer.SAVE_PROGRESS = true;
         return view;
     }
     public void loadView() {

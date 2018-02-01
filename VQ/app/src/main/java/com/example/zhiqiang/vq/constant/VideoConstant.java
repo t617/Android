@@ -1,4 +1,4 @@
-package com.example.zhiqiang.vq;
+package com.example.zhiqiang.vq.constant;
 
 /**
  * Created by shengjun on 16/9/10.

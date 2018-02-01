@@ -30,7 +30,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.zhiqiang.vq.Adapter.MyFragmentPagerAdapter;
+import com.example.zhiqiang.vq.adapter.MyFragmentPagerAdapter;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.connect.common.Constants;

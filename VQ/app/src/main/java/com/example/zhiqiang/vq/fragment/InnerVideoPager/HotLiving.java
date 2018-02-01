@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.zhiqiang.vq.Adapter.LivesAdapter;
+import com.example.zhiqiang.vq.adapter.LivesAdapter;
 import com.example.zhiqiang.vq.R;
 import com.example.zhiqiang.vq.VideoActivity;
 import com.example.zhiqiang.vq.entity.Lives;
@@ -54,10 +54,9 @@ public class HotLiving extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), VideoActivity.class);
                 intent.putExtra("stream_addr", mLivesList.get(position).getStream_addr());
-//                intent.putExtra("distance", mLivesList.get(position).getCreator().getDistance());
-//                intent.putExtra("city", mLivesList.get(position).getCreator().getCity());
                 intent.putExtra("description", mLivesList.get(position).getCreator().getDescription());
                 intent.putExtra("portrait", mLivesList.get(position).getCreator().getPortrait());
+                intent.putExtra("type", "living");
                 startActivity(intent);
             }
         });

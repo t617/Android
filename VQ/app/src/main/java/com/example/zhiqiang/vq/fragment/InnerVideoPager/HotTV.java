@@ -6,17 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.ExpandableListView;
 
 import com.example.zhiqiang.vq.R;
 import com.example.zhiqiang.vq.VideoActivity;
+import com.example.zhiqiang.vq.adapter.MyBaseExpandableListAdapter;
+import com.example.zhiqiang.vq.constant.TvLivesConstant;
+import com.example.zhiqiang.vq.entity.tvLives;
+import com.example.zhiqiang.vq.entity.tvLivesGroup;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by zhiqiang on 2018/1/30.
@@ -24,58 +23,76 @@ import java.util.Map;
 
 public class HotTV extends Fragment {
     private View view;
-    private ListView mLivingList;
-    private SimpleAdapter mAdapter;
-    private List<Map<String,Object>> mLivesList;
-    private static final String[] urls = {"http://ivi.bupt.edu.cn/hls/cctv5hd.m3u8",
-            "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8", "http://ivi.bupt.edu.cn/hls/cctv5hd.m3u8"};
+//    private ListView mLivingList;
+//    private SimpleAdapter mAdapter;
+//    private List<Map<String,Object>> mLivesList;
+    private ArrayList<tvLivesGroup> gData = null;
+    private ArrayList<ArrayList<tvLives>> iData = null;
+    private ArrayList<tvLives> data = null;
+    private ExpandableListView expandListTv;
+    private MyBaseExpandableListAdapter mAdapter = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        String mVideoPath = "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8";
-//        String mVideoPath = "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8";
-//        String mVideoPath = "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8";
-//        String mVideoPath = "http://ivi.bupt.edu.cn/hls/cctv5hd.m3u8";
         view = inflater.inflate(R.layout.activity_hot_tv, container, false);
         bindView();
-        mLivesList = new ArrayList<>();
         initData();
-        mAdapter = new SimpleAdapter(getContext(), mLivesList, R.layout.adapter_lives, new String[]
-                {"nameAndCity", "description", "portrait"}, new int[]{R.id.tvNameAndCity, R.id.description, R.id.ivPortrait});
-        mLivingList.setAdapter(mAdapter);
-        mLivingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), VideoActivity.class);
-                intent.putExtra("stream_addr", urls[position]);
-                intent.putExtra("description", (String) mLivesList.get(position).get("description"));
-                intent.putExtra("portrait", (String) mLivesList.get(position).get("portrait"));
-                startActivity(intent);
-            }
-        });
+        setMyAdapter();
         return view;
     }
     public void initData() {
-        Map<String, Object> listItem = new LinkedHashMap<>();
-        listItem.put("nameAndCity", "");
-        listItem.put("description", "CCTV1");
-        listItem.put("portrait", "http://img2.inke.cn/MTUxNzMxODUwMjgzNyMxMzQjanBn.jpg");
-        mLivesList.add(listItem);
-        Map<String, Object> listItem1 = new LinkedHashMap<>();
-        listItem.put("nameAndCity", "");
-        listItem.put("description", "CCTV5");
-        listItem.put("portrait", "http://img2.inke.cn/MTUxNzMxODUwMjgzNyMxMzQjanBn.jpg");
-        mLivesList.add(listItem1);
-        Map<String, Object> listItem2 = new LinkedHashMap<>();
-        listItem.put("nameAndCity", "");
-        listItem.put("description", "CCTV6");
-        listItem.put("portrait", "http://img2.inke.cn/MTUxNzMxODUwMjgzNyMxMzQjanBn.jpg");
-        mLivesList.add(listItem2);
+        gData = new ArrayList<tvLivesGroup>();
+        iData = new ArrayList<ArrayList<tvLives>>();
+
+        for (String type : TvLivesConstant.tvType) {
+            gData.add(new tvLivesGroup(type));
+        }
+        data = new ArrayList<tvLives>();
+        for (String[] tvNameAndUrl : TvLivesConstant.tvNameAndUrl1) {
+            data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
+        }
+        iData.add(data);
+        data = new ArrayList<tvLives>();
+        for (String[] tvNameAndUrl : TvLivesConstant.tvNameAndUrl2) {
+            data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
+        }
+        iData.add(data);
+        data = new ArrayList<tvLives>();
+        for (String[] tvNameAndUrl : TvLivesConstant.tvNameAndUrl3) {
+            data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
+        }
+        iData.add(data);
+        data = new ArrayList<tvLives>();
+        for (String[] tvNameAndUrl : TvLivesConstant.tvNameAndUrl4) {
+            data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
+        }
+        iData.add(data);
+        data = new ArrayList<tvLives>();
+        for (String[] tvNameAndUrl : TvLivesConstant.tvNameAndUrl5) {
+            data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
+        }
+        iData.add(data);
+    }
+    public void setMyAdapter() {
+        mAdapter = new MyBaseExpandableListAdapter(gData, iData, getContext());
+        expandListTv.setAdapter(mAdapter);
+        expandListTv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent = new Intent(getContext(), VideoActivity.class);
+                intent.putExtra("stream_addr", iData.get(groupPosition).get(childPosition).getUrlAddr());
+                intent.putExtra("description", iData.get(groupPosition).get(childPosition).getTvName());
+                startActivity(intent);
+//                Toast.makeText(getContext(), "你点击了：" + iData.get(groupPosition).get(childPosition).getUrlAddr(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
     public void bindView() {
-        mLivingList = (ListView) view.findViewById(R.id.list_view);
+        expandListTv = (ExpandableListView) view.findViewById(R.id.expand_list_tv);
     }
 }

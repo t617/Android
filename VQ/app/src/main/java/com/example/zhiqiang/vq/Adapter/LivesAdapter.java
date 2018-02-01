@@ -1,4 +1,4 @@
-package com.example.zhiqiang.vq.Adapter;
+package com.example.zhiqiang.vq.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -52,7 +52,6 @@ public class LivesAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         Lives lives = mLives.get(position);
         holder.tvNameAndCity.setText("来自" + lives.getCity() + "的" + lives.getCreator().getName());
         holder.description.setText(lives.getCreator().getDescription());

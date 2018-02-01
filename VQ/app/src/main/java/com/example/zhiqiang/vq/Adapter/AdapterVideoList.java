@@ -1,4 +1,4 @@
-package com.example.zhiqiang.vq.Adapter;
+package com.example.zhiqiang.vq.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
