@@ -72,6 +72,16 @@ public class HotTV extends Fragment {
             data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
         }
         iData.add(data);
+        data = new ArrayList<tvLives>();
+        for (String[] tvNameAndUrl : TvLivesConstant.tvNameAndUrl6) {
+            data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
+        }
+        iData.add(data);
+        data = new ArrayList<tvLives>();
+        for (String[] tvNameAndUrl : TvLivesConstant.tvNameAndUrl7) {
+            data.add(new tvLives(tvNameAndUrl[0], tvNameAndUrl[1]));
+        }
+        iData.add(data);
     }
     public void setMyAdapter() {
         mAdapter = new MyBaseExpandableListAdapter(gData, iData, getContext());
@@ -83,7 +93,6 @@ public class HotTV extends Fragment {
                 intent.putExtra("stream_addr", iData.get(groupPosition).get(childPosition).getUrlAddr());
                 intent.putExtra("description", iData.get(groupPosition).get(childPosition).getTvName());
                 startActivity(intent);
-//                Toast.makeText(getContext(), "你点击了：" + iData.get(groupPosition).get(childPosition).getUrlAddr(), Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

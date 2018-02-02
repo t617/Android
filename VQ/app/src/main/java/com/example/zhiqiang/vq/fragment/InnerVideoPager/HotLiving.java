@@ -14,8 +14,12 @@ import android.widget.GridView;
 import com.example.zhiqiang.vq.adapter.LivesAdapter;
 import com.example.zhiqiang.vq.R;
 import com.example.zhiqiang.vq.VideoActivity;
+import com.example.zhiqiang.vq.constant.LivesConstant;
 import com.example.zhiqiang.vq.entity.Lives;
 import com.example.zhiqiang.vq.http.HttpUtils;
+import com.scwang.smartrefresh.layout.api.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,14 +34,9 @@ public class HotLiving extends Fragment {
     private GridView mGvLivingList;
     private LivesAdapter mAdapter;
     private List<Lives> mLivesList;
-    private static final String url = "http://service.inke.com/api/live/simpleall?&gender=1" +
-            "&gps_info=116.346844,40.090467&loc_info=CN,%E5%8C%97%E4%BA%AC%E5%B8%82,%E5%8C" +
-            "%97%E4%BA%AC%E5%B8%82&is_new_user=1&lc=0000000000000053&cc=TG0001&cv=IK4." +
-            "0.30_Iphone&proto=7&idfa=D7D0D5A2-3073-4A74-A726-98BE8B4E8F38&idfv=58A18E13-A2" +
-            "1D-456D-B6D8-7499948B379D&devi=54b68af1895085419f7f8978d95d95257dd44f93&osvers" +
-            "ion=ios_10.300000&ua=iPhone6_2&imei=&imsi=&uid=450515766&sid=20XNNoa5VwMozGALfm" +
-            "i2xN1YCfLWvEq7aJuTHTQLu8bT88i1aNbi0&conn=wifi&mtid=391bb3520c38e0444ba0b3975f4bb" +
-            "1aa&mtxid=f0b42913a33c&logid=162,210&s_sg=3111b3a0092d652ab3bcb218099968de&s_sc=100&s_st=1492954889";
+    private List<Lives> mLivesListTotal;
+    private RefreshLayout refreshLayout;
+    private static int num = 20;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +46,18 @@ public class HotLiving extends Fragment {
         view = inflater.inflate(R.layout.activity_hot_living, container, false);
         bindView();
         mLivesList = new ArrayList<>();
+        mLivesListTotal = new ArrayList<>();
         mAdapter = new LivesAdapter(getActivity(), mLivesList);
         mGvLivingList.setAdapter(mAdapter);
+        setListener();
+        new RequestLivingTask().execute(LivesConstant.url);
+        return view;
+    }
+    public void bindView() {
+        mGvLivingList = (GridView) view.findViewById(R.id.gvLivingList);
+        refreshLayout = (RefreshLayout) view.findViewById(R.id.refreshLayout);
+    }
+    public void setListener() {
         mGvLivingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,15 +65,28 @@ public class HotLiving extends Fragment {
                 intent.putExtra("stream_addr", mLivesList.get(position).getStream_addr());
                 intent.putExtra("description", mLivesList.get(position).getCreator().getDescription());
                 intent.putExtra("portrait", mLivesList.get(position).getCreator().getPortrait());
-                intent.putExtra("type", "living");
                 startActivity(intent);
             }
         });
-        new RequestLivingTask().execute(url);
-        return view;
-    }
-    public void bindView() {
-        mGvLivingList = (GridView) view.findViewById(R.id.gvLivingList);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                new RequestLivingTask().execute(LivesConstant.url);
+                refreshlayout.finishRefresh(1500);
+            }
+        });
+        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                for (int i = num; i < num + 20 && mLivesListTotal.size() >= num; i++) {
+                    if (mLivesListTotal.size() >= num + 20)
+                        mLivesList.add(mLivesListTotal.get(i));
+                }
+                num += 20;
+                mAdapter.notifyDataSetChanged();
+                refreshlayout.finishLoadmore(1500);
+            }
+        });
     }
     private class RequestLivingTask extends AsyncTask<String,Void,List<Lives>> {
         ProgressDialog mProgressDialog ;
@@ -97,7 +119,15 @@ public class HotLiving extends Fragment {
         @Override
         protected void onPostExecute(List<Lives> lives) {
             super.onPostExecute(lives);
-            mLivesList.addAll(lives);
+            mLivesListTotal.addAll(lives);
+            num = 20;
+            if (lives.size() < 20) {
+                num = lives.size();
+            }
+            for (int i = 0; i < num; i++) {
+                mLivesList.add(lives.get(i));
+            }
+//            mLivesList.addAll(lives);
             mAdapter.notifyDataSetChanged();
 //            mProgressDialog.dismiss();
         }

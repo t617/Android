@@ -19,12 +19,7 @@ public class VideoActivity extends AppCompatActivity {
         String mVideoPath = getIntent().getStringExtra("stream_addr");
         String mDdescription = getIntent().getStringExtra("description");
         String mPortrait = getIntent().getStringExtra("portrait");
-        String isLiving = getIntent().getStringExtra("type");
-        if (isLiving != null && isLiving.equals("living")) {
-            JZVideoPlayer.SAVE_PROGRESS = false;
-        } else {
-            JZVideoPlayer.SAVE_PROGRESS = true;
-        }
+        JZVideoPlayer.SAVE_PROGRESS = false;
         jzVideoPlayerStandard.setUp(mVideoPath, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, mDdescription);
         Picasso.with(this).load(mPortrait).into(jzVideoPlayerStandard.thumbImageView);
         jzVideoPlayerStandard.startVideo();
@@ -53,6 +48,7 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        JZVideoPlayer.SAVE_PROGRESS = true;
         JZVideoPlayer.releaseAllVideos();
     }
 }

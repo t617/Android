@@ -9,6 +9,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.example.zhiqiang.vq.R;
+import com.scwang.smartrefresh.layout.api.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -16,13 +19,34 @@ import java.util.List;
 import java.util.Map;
 
 public class MainFragment extends Fragment {
+    private View view;
     private ListView listView;
+    private RefreshLayout refreshLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        listView = (ListView) view.findViewById(R.id.reposList);
+        view = inflater.inflate(R.layout.fragment_main, container, false);
+        bindView();
+        setListener();
         initialData();
         return view;
+    }
+    public void setListener() {
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refreshlayout.finishRefresh(2000);
+            }
+        });
+        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadmore(2000);
+            }
+        });
+    }
+    public void bindView() {
+        listView = (ListView) view.findViewById(R.id.reposList);
+        refreshLayout = (RefreshLayout) view.findViewById(R.id.refreshLayout);
     }
     public void initialData() {
         List<Map<String, Object>> listItems = new ArrayList<>();
